@@ -1,4 +1,4 @@
-package com.riccetto;
+package com.riccetto.hello;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
