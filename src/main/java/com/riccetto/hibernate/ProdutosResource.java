@@ -3,14 +3,14 @@ package com.riccetto.hibernate;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.transaction.Transactional;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 // ---------------------------------------  Endpoint
 @Path("/produtos")
+@Transactional
 public class ProdutosResource {
 
     @Inject EntityManager entityManager;
@@ -20,6 +20,12 @@ public class ProdutosResource {
                      // O Quarkus sujere que não utilizemos o "privite" em atributos injetados
     public List<Produto> getProdutos() {
         return entityManager.createQuery("select p from Produto p", Produto.class).getResultList();
+    }
+
+    @POST
+    @Consumes(value = MediaType.APPLICATION_JSON)
+    public void addProduto(Produto p) {
+        entityManager.persist(p);
     }
 
 }

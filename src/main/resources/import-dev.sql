@@ -1,2 +1,2 @@
 insert into produto(id, nome) values(1, 'teste');
-insert into produto(id, nome) values(2, 'teste 3');
+insert into produto(id, nome) values(2, 'teste novo');
